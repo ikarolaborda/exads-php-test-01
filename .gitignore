@@ -1,3 +1,4 @@
 app/vendor/
 .idea/
 app/.env
+app/var/
