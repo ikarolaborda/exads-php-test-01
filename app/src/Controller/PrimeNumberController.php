@@ -9,8 +9,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PrimeNumberController extends AbstractController
 {
-    public function index(): Response
+    public function index(): JsonResponse
     {
+        /* Finding The Prime Numbers */
         $multipleList = [];
         $number = 2 ;
         while ($number < 100)
@@ -36,19 +37,27 @@ class PrimeNumberController extends AbstractController
 
         }
 
+        /* Building the CONVERTED PRIME Array */
         foreach ($rawPrimal as $primal) {
             $primal = $primal . " - [PRIME]";
             $convertedPrime[] = $primal;
         }
 
+        /* Building the FINAL Merged Array */
         $output = [...$multipleList, ...$rawPrimal];
         for($i = 1; $i <= count($output); $i++) {
             if(in_array($i, $rawPrimal)) {
                 $output[$i] = "[PRIME]";
 
             }
+            if(!in_array($i, $rawPrimal)) {
+                if($i % 2 === 0 && $i % 5 === 0) {
+                    $multiples[] = $i;
 
+                }
+            }
         }
-        return new JsonResponse(['RAW PRIMAL' => $rawPrimal, 'CONVERTED PRIMAL' => $convertedPrime, 'Merged Array' => $output]);
+
+        return new JsonResponse(['RAW PRIME' => $rawPrimal, 'CONVERTED PRIME' => $convertedPrime, 'Merged Array' => $output, 'Array of Multiples' => $multiples]);
     }
 }
