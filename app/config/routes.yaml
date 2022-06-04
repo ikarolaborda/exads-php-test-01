@@ -2,3 +2,8 @@ index:
     path: /
     controller: App\Controller\PrimeNumberController::index
     methods: GET
+
+asc2_index:
+    path: /ASCII
+    controller: App\Controller\ASCIITableController::index
+    methods: GET
