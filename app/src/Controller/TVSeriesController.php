@@ -2,13 +2,23 @@
 
 namespace App\Controller;
 
+use App\Repository\TVSeriesRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
 
 class TVSeriesController extends AbstractController
 {
-    #[Route('/t/v/series', name: 'app_t_v_series')]
+
+    private EntityManager $entityManager;
+    private TVSeriesRepository $repository;
+
+    public function __construct(EntityManager $entityManager, TVSeriesRepository $repository)
+    {
+        $this->entityManager = $entityManager;
+        $this->repository = $repository;
+    }
+
     public function index(): JsonResponse
     {
         return $this->json([

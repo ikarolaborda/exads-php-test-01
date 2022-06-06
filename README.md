@@ -12,5 +12,5 @@ in order to properly run this app, you must execute the following steps:
 cp app/.env.example app/.env
 make dup
 make php #can also use make dci
-composer install
+composer install #if you choose to do make dci, then this one is one necessary
 ```
